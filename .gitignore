@@ -3,7 +3,7 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+kossurvive-be/
 # Environment files
 .env
 .env.local
@@ -36,4 +36,5 @@ coverage/
 *.tgz
 *.zip
 *.tar
-/generated/prisma
+
+.kossurvive-be/

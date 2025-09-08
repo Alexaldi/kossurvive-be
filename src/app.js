@@ -15,11 +15,16 @@ app.use(express.json());
 // Clerk middleware -> semua request bawa context auth
 app.use(clerkMiddleware());
 
-// Healthcheck
-app.get("/health", (_req, res) => res.json({ ok: true }));
-
 // Routes
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
+
+// Error handler khusus Clerk
+app.use((err, req, res, next) => {
+    if (err && err.code === "unauthorized") {
+        return res.status(401).json({ error: "Unauthorized: Invalid or expired token" });
+    }
+    next(err);
+});
 
 export default app;
